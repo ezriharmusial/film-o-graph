@@ -4,7 +4,17 @@ import resolve from "@rollup/plugin-node-resolve";
 import livereload from "rollup-plugin-livereload";
 import { terser } from "rollup-plugin-terser";
 import css from "rollup-plugin-css-only";
+import scss from "rollup-plugin-scss";
 import preprocess from "svelte-preprocess";
+import alias from "@rollup/plugin-alias";
+
+const aliases = alias({
+  resolve: [".svelte", ".js", ".sass", ".scss"], //optional, by default this will just look for .js files or folders
+  entries: [
+    { find: "components", replacement: "./src/components" },
+    { find: "bulma", replacement: "./node_modules/bulma" },
+  ],
+});
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -42,6 +52,7 @@ export default {
     file: "public/build/bundle.js",
   },
   plugins: [
+    aliases,
     svelte({
       preprocess: preprocess(),
       compilerOptions: {
@@ -51,6 +62,7 @@ export default {
     }),
     // we'll extract any component CSS out into
     // a separate file - better for performance
+    scss(),
     css({ output: "bundle.css" }),
 
     // If you have external dependencies installed from
