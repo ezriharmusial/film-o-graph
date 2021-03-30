@@ -1,0 +1,44 @@
+// Import Bulma's initial variables
+@import "bulma/sass/utilities/initial-variables";
+@import "bulma/sass/utilities/functions";
+
+/** Colors */
+$primary: #f3750a;
+$secondary: #ffd800 !default;
+$danger: #e62d2b;
+$warning: #eb621c;
+$success: #92c138;
+$calm: #63bda1 !default;
+$info: #40c0f0;
+$light: #fcf1ce;
+$dark: #343a40;
+
+$secondary-invert: $black !default;
+$calm-invert: $white !default;
+
+/** Link colors */
+$link: $primary;
+
+/** Box Model */
+$spacer: 2rem;
+
+/** Backgrounds */
+$body-background-color: $dark;
+$body-color: $light;
+$body-font-size: 1.2rem;
+$footer-bg: #f3c73e;
+
+@import "bulma/sass/utilities/derived-variables";
+@import "bulma/sass/base/animations";
+@import "bulma/sass/utilities/mixins";
+@import "bulma/sass/utilities/controls";
+
+$colors: map-merge(
+  (
+    "secondary": ($secondary,
+    $secondary-invert),
+    "calm": ($calm,
+    $calm-invert),
+  ),
+  $colors
+);
