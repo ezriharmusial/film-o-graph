@@ -2,43 +2,92 @@
 @import "bulma/sass/utilities/initial-variables";
 @import "bulma/sass/utilities/functions";
 
-/** Colors */
-$primary: #f3750a;
-$secondary: #ffd800 !default;
-$danger: #e62d2b;
-$warning: #eb621c;
-$success: #92c138;
-$calm: #63bda1 !default;
-$info: #40c0f0;
-$light: #fcf1ce;
-$dark: #343a40;
+$grey-accent: hsl(0, 0%, 14%);
+$grey-darker: hsl(0, 0%, 21%);
+$grey-dark: hsl(0, 0%, 29%);
+$grey: hsl(0, 0%, 48%);
+$grey-light: hsl(0, 0%, 71%);
+$grey-lighter: hsl(0, 0%, 86%);
 
-$secondary-invert: $black !default;
-$calm-invert: $white !default;
+$primary: #2a9fd6 !default;
+$primary-light: lighten($primary, 10);
+$link: #3273e2;
 
-/** Link colors */
-$link: $primary;
+$white: #fff;
+$white-ter: #f5f5f5;
 
-/** Box Model */
-$spacer: 2rem;
+$body-background-color: #000;
+$background: $grey-darker;
+$footer-background-color: $background;
 
-/** Backgrounds */
-$body-background-color: $dark;
-$body-color: $light;
-$body-font-size: 1.2rem;
-$footer-bg: #f3c73e;
+$border: $grey-dark;
 
-@import "bulma/sass/utilities/derived-variables";
+$title-color: $white;
+$subtitle-color: $white-ter;
+$subtitle-strong-color: $white-ter;
+
+$text: $white;
+$text-light: lighten($text, 10);
+$text-strong: darken($text, 5);
+
+$box-color: $text;
+$box-background-color: $grey-accent;
+$box-shadow: none;
+
+$link-hover: $primary-light;
+$link-focus: $primary-light;
+$link-active: $primary-light;
+$link-hover-border: $grey-dark;
+$link-active-border: $grey;
+
+$button-color: $text;
+$button-background-color: #111;
+$button-border-color: $grey-darker;
+$button-hover-color: $grey-lighter;
+$button-focus: $grey-light;
+$button-active-color: $grey-light;
+
+$input-background-color:  rgba(255, 255, 255, 0.2);
+$input-color: $grey-darker;
+$input-icon-color: $grey;
+$input-icon-active-color: $input-color;
+
+$table-color: $text;
+$table-head: $grey-lighter;
+$table-background-color: $grey-darker;
+$table-cell-border: 1px solid $grey-dark;
+
+$table-row-hover-background-color: $grey-dark;
+$table-striped-row-even-background-color: $grey-dark;
+$table-striped-row-even-hover-background-color: lighten($grey-dark, 4);
+
+$pagination-border-color: $grey-darker;
+$pagination-disabled: $grey-light;
+$pagination-disabled-background-color: $grey-dark;
+
+$dropdown-content-background-color: $background;
+$dropdown-item-color: $text;
+
+$navbar-background-color: $body-background-color;
+$navbar-item-color: $white;
+$navbar-item-hover-color: $white;
+$navbar-item-hover-background-color: rgba($white, 0.12);
+$navbar-item-active-color: $link;
+$navbar-item-active-background-color: $navbar-item-hover-background-color;
+
+$navbar-dropdown-background-color: $body-background-color;
+$navbar-dropdown-item-hover-color: $white;
+$navbar-dropdown-item-hover-background-color: $navbar-item-hover-background-color;
+$navbar-dropdown-item-active-background-color: $navbar-item-hover-background-color;
+$navbar-dropdown-arrow: $white;
+
+$tabs-boxed-link-active-background-color: $body-background-color;
+
+$file-cta-background-color: $grey-darker;
+
+$progress-bar-background-color: $grey-dark;
+
+$panel-heading-background-color: $grey-dark;@import "bulma/sass/utilities/derived-variables";
 @import "bulma/sass/base/animations";
 @import "bulma/sass/utilities/mixins";
 @import "bulma/sass/utilities/controls";
-
-$colors: map-merge(
-  (
-    "secondary": ($secondary,
-    $secondary-invert),
-    "calm": ($calm,
-    $calm-invert),
-  ),
-  $colors
-);

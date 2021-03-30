@@ -1,16 +1,21 @@
 <script>
+  import Footer from './components/Footer.svelte'
+  import Navbar from './components/Navbar.svelte'
+  import Router from 'svelte-spa-router'
+  import { routes  }from './routes.js'
 </script>
 
-<style lang="scss">
-  @import "../scss/main.scss";
-</style>
 
-<div class="container">
-  <div class="hero is-primary">
-  <div class="hero-body">
-
-  <h1 class="title">Film-O-Graph</h1>
+<div class="hero is-fullheight is-dark is-bold">
+  <div class="hero-foot">
+    <Navbar />
   </div>
+
+  <div class="hero-body">
+    <Router {routes}/>
+  </div>
+  <div class="hero-foot">
+    <Footer />
   </div>
 </div>
 
