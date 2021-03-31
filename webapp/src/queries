@@ -1,0 +1,181 @@
+# Define Types
+
+type Person {
+    name
+    nationality
+    acts_in
+}
+
+type Movie {
+    name
+    length
+    actors #this is an alias
+}
+
+# Define Directives and index
+
+name: string @index(exact, term) .
+title: string @index(exact, term) .
+nationality: string @index(exact, term ) .
+length: int @index(int) .
+acts_in: [uid] @reverse .
+actors: [uid] .
+
+# Fill Fields
+
+# 1. Add Movie with title and length
+{
+    "set":
+        {
+            "uid": "_:movie1",
+            "length": "7320",
+            "dgraph.type": "Movie",
+            "name": "Mandelorian"
+        }
+}
+# 2. Add Actor with Name and Nationality 
+{
+    "set":
+       {
+            "uid": "_:jhonnyd",
+            "dgraph.type": "Person",
+            "name": "Johhny Dope",
+            "nationality": "Amurdican"
+        }
+}
+# 3. When Making movies add New or Existing Actors
+{
+    "set": [
+        {
+            "uid": "_:movie1",
+            "length": "7320",
+            "dgraph.type": "Movie",
+            "name": "MovieABC"
+        },
+        {
+            "uid": "_:movie2",
+            "length": "5580",
+            "dgraph.type": "Movie",
+            "name": "The other movie"
+        },
+        {
+            "uid": "_:jack",
+            "acts_in": { "uid": "_:movie1"},
+            "dgraph.type": "Person",
+            "name": "Jack",
+            "nationality": "American"
+        },
+        {
+            "uid": "_:ivy",
+            "acts_in": { "uid": "_:movie1"},
+            "dgraph.type": "Person",
+            "name": "Ivy",
+            "nationality": "English"
+        },
+        {
+            "uid": "_:zoe",
+            "acts_in": { "uid": "_:movie1"},
+            "dgraph.type": "Person",
+            "name": "Zoe",
+            "nationality": "French"
+        },
+        {
+            "uid": "_:jose",
+            "acts_in": { "uid": "_:movie2"},
+            "dgraph.type": "Person",
+            "name": "Jose", 
+            "nationality": "Mexican"
+        },
+        {
+            "uid": "_:alexei",
+            "acts_in": { "uid": "_:movie2"},
+            "dgraph.type": "Person",
+            "name": "Alexei",
+            "nationality": "Russian"
+        }
+    ]
+}
+
+
+# 4. Get All Movies with Actors
+{
+  get_movies(func: type(Movie)) {
+    uid
+    name
+    length
+    actors: ~acts_in {
+    	uid
+      name
+      nationality
+    }
+  }
+} 
+# 6. Update Movie 
+{ 
+	"set": {
+     	"uid": "0x2745",
+      "name": "Lord of the Grins",
+      "length": "10800"
+  }
+}
+
+
+# 8. Get All Actors and Movies there in
+#Based on General Person not Actor Type
+#TODO: maybe use type(Actor)? or leave like this for Directors & MovieCrew Functions
+{
+  get_actors(func: has(acts_in)) { 
+    uid
+    name
+    nationality
+    acts_in {
+    	name
+    }
+  }
+}
+
+# 9. Update or Delete Actor
+{ 
+	"set": {
+     	"uid": "0x2744",
+      "name": "Yuri",
+      "nationality": "Ukranian"
+  }
+}
+
+# delete by UID (Movie or Actor)
+{
+    "delete": [
+        {
+            "uid": "0x2747"
+        }
+    ]
+}
+
+# MovieDetail Get Specific Movie (MovieABC) by uid
+{
+  get_movie_by_uid(func: uid("0x272d")) {
+    name
+    length
+    actors : ~acts_in {
+        uid
+        name
+        nationality
+    }
+  }
+}
+
+# ActorDetail Get Specific Actor (Jack) by uid
+{
+  get_actor_by_uid(func: uid("0x272f")) {
+    uid
+    name
+    nationality
+    acts_in {
+    	uid
+      name
+      length
+    }
+  }
+}
+

@@ -1,14 +1,16 @@
-# Doel
+# Film-O-Graph
+
+## Doel
 
 Maak een web app waarin je films met acteurs kunt bijhouden.
 
-# Technisch
+## Technisch
 
 De keuze in toegepaste talen en frameworks is vrij te kiezen, maar het is een vereiste dat de frontend middels Graphql met de backend communiceert en dat de data in een database wordt opgeslagen.
 
 Een voorbeeld stack is een Vue.js frontend met een Node.js Apollo server en SQLite database. Maar als je snel een Serverless Graphql backend obv API Gateway en DynamoDB gekoppeld aan een React frontend op S3 hebt staan is dat ook leuk.
 
-# Requirements
+## Requirements
 
 Om wat richting te geven over welke dingen we graag willen zien hebben we een lijstje met requirements op volgorde van prioriteit:
 
@@ -22,7 +24,7 @@ Om wat richting te geven over welke dingen we graag willen zien hebben we een li
 8. Als user kun je een lijst van acteurs raadplegen
 9. Als user kun je een bestaande acteurs updaten en verwijderen
 
-# Overig
+## Overig
 
 Werk de applicatie op een agile manier uit. Dwz zorg dat je in kleine stappen werkt, waarbij elke stap eindigt met werkende code. Het is veel belangrijker dat er een aantal features volledig werken, dan dat er 10 features bijna werken.
 

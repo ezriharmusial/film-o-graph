@@ -15,7 +15,7 @@ services:
       - 5080:5080
       - 6080:6080
     restart: on-failure
-    command: dgraph zero --my=zero:5080
+    command: dgraph zero --my=zero:5080 
   alpha:
     image: dgraph/dgraph:latest
     volumes:
@@ -24,7 +24,7 @@ services:
       - 8080:8080
       - 9080:9080
     restart: on-failure
-    command: dgraph alpha --my=alpha:7080 --zero=zero:5080
+    command: dgraph alpha --whitelist=172.18.0.1 --my=alpha:7080 --zero=zero:5080 
   ratel:
     image: dgraph/dgraph:latest
     ports:
