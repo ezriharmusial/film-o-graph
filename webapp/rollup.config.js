@@ -7,6 +7,7 @@ import css from "rollup-plugin-css-only";
 import scss from "rollup-plugin-scss";
 import preprocess from "svelte-preprocess";
 import alias from "@rollup/plugin-alias";
+import replace from "@rollup/plugin-replace";
 
 const aliases = alias({
   resolve: [".svelte", ".js", ".sass", ".scss"], //optional, by default this will just look for .js files or folders
@@ -88,6 +89,10 @@ export default {
     // If we're building for production (npm run build
     // instead of npm run dev), minify
     production && terser(),
+
+    replace({
+      "process.env.NODE_ENV": JSON.stringify("development"),
+    }),
   ],
   watch: {
     clearScreen: false,
