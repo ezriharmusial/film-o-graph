@@ -1,12 +1,14 @@
 type Actor {
-  name: String! @search(by: [term])
-  nationality: String!
-  acts_in: [Movie] 
+  id: ID!
+  name: String 
+  nationality: String
+  acts_in: Movie @hasInverse(field: actors) 
 }
 
 type Movie {
-  name: String! @search(by: [fulltext])
-  length: Int!
-  actors: [Actor] @hasInverse(field: acts_in) #this is an alias
+  id: ID!
+  title: String 
+  length: Int
+  actors: [Actor]
 }
 
