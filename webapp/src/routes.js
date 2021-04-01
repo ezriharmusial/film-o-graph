@@ -1,7 +1,7 @@
-import Home from "routes/Home.svelte";
-import Movies from "routes/Movies.svelte";
-import Actors from "routes/Actors.svelte";
-import NotFound from "routes/NotFound.svelte";
+import Home from "./routes/Home.svelte";
+import Movies from "./routes/Movies.svelte";
+import Actors from "./routes/Actors.svelte";
+import NotFound from "./routes/NotFound.svelte";
 
 export const routes = {
   // Exact path
