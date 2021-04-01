@@ -29,3 +29,32 @@ Om wat richting te geven over welke dingen we graag willen zien hebben we een li
 Werk de applicatie op een agile manier uit. Dwz zorg dat je in kleine stappen werkt, waarbij elke stap eindigt met werkende code. Het is veel belangrijker dat er een aantal features volledig werken, dan dat er 10 features bijna werken.
 
 Stuur binnen 48 uur na dit mailtje een Github/lab repo op met daarin alles om de code op te kunnen starten. Maak gebruik van git en registreer zo je voortgang middels verschillende commits.
+
+# Install
+
+The instructions assume that you have already installed [Docker](https://docs.docker.com/installation/) and [Docker Compose](https://docs.docker.com/compose/install/).
+
+In order to get started be sure to clone this project onto your host and enter the Directory.
+
+    ```
+    git clone https://github.com/ezri-harmusial/film-o-graph.git
+    cd film-o-graph
+    ```
+
+Bring up the Dgraph Backend with Docker-compose, add the graphQl schema and fill it with initial data.
+
+    ```
+    sudo docker-compose up -d
+    curl -X POST localhost:8080/admin/schema --data-binary '@./dgraph/schema'
+    curl -H "Content-Type: application/json" -X POST localhost:8080/mutate?commitNow=true --data-binary @./dgraph/mutations
+    ```
+
+Enter the webapp directory, install dependencies with yarn or npm and start the webapp
+
+    ```
+    cd webapp
+    yarn
+    yarn start
+    ```
+
+That's it. Film-O-Graph is up and Running. Enjoy!

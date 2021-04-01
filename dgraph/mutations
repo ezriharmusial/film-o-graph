@@ -1,0 +1,51 @@
+{
+  "set": [
+    {
+      "uid": "_:movie1",
+      "length": "7320",
+      "dgraph.type": "Movie",
+      "title": "Lord of the Grins"
+    },
+    {
+      "uid": "_:movie2",
+      "length": "5580",
+      "dgraph.type": "Movie",
+      "title": "The Fandelorian"
+    },
+    {
+      "uid": "_:jack",
+      "acts_in": { "uid": "_:movie1" },
+      "dgraph.type": "Actor",
+      "name": "Elinoh Steel",
+      "nationality": "Irish"
+    },
+    {
+      "uid": "_:ivy",
+      "acts_in": { "uid": "_:movie1" },
+      "dgraph.type": "Actor",
+      "name": "Borlando Gloom",
+      "nationality": "American"
+    },
+    {
+      "uid": "_:zoe",
+      "acts_in": { "uid": "_:movie1" },
+      "dgraph.type": "Actor",
+      "name": "Tiv Wyler",
+      "nationality": "French"
+    },
+    {
+      "uid": "_:jose",
+      "acts_in": { "uid": "_:movie2" },
+      "dgraph.type": "Actor",
+      "name": "Jancarlo Despasito",
+      "nationality": "Mexican"
+    },
+    {
+      "uid": "_:alexei",
+      "acts_in": { "uid": "_:movie2" },
+      "dgraph.type": "Actor",
+      "name": "Jan Knoll",
+      "nationality": "Nederlands"
+    }
+  ]
+}
