@@ -11,9 +11,32 @@
   });
 </script>
 
+<style lang="scss">
+.hero {
+  padding: 50px 0;
+
+  .hero-head,
+  .hero-foot {
+    width: 100vw;
+    background-color: rgba(0,0,0, .5);
+  }
+  .hero-head {
+    position: fixed;
+    top: 0;
+    z-index: 3;
+  }
+
+  .hero-foot {
+    position: fixed;
+    bottom: 0;
+    z-index: 3;
+  }
+
+}
+</style>
 
 <div class="hero is-fullheight is-dark is-bold">
-  <div class="hero-foot">
+  <div class="hero-head">
     <Navbar />
   </div>
 

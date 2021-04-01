@@ -1,7 +1,6 @@
 <script>
   import { operationStore, query } from "@urql/svelte";
-  
-  export let params;
+  import {  timeConvert } from '../utils.js';
 
   const movies = operationStore(`
     {
@@ -10,6 +9,7 @@
         title
         length
         actors {
+          id
           name
           nationality
        }
@@ -17,15 +17,28 @@
     }
   `);
   query(movies);
-$: console.log($movies.data?.queryMovie)
+
 </script>
 
+<style lang="scss"> 
+  figure {
+    position: relative;
+    width: 128px;
 
+    figcaption {
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      z-index: 2;
+    }
+  }
+</style>
 
-  <h2 class="title">
+<div class="container">
+  <h2 class="title mx-4">
     Movies
   </h2>
-  <div>
+
   {#if $movies.fetching}
     Loading...
   {:else if $movies.error}
@@ -33,12 +46,25 @@ $: console.log($movies.data?.queryMovie)
   {:else if !$movies.data}
     No data
   {:else}
-    <div class="grid-container">
-      {#each $movies.data.queryMovie as movie}
-        <div class="grid-item">
-          <div>title - {movie.title}</div>
-        </div>
-      {/each}
+  <div class="tile is-parent">
+    {#each $movies.data.queryMovie as movie}
+    <div class="tile notification is-flex is-flex-direction-row mx-4">
+      <figure class="image">
+        <img src="/images/movies/small/mandelorian.jpg" alt="poster { movie.title }" />
+        <figcaption class="tag">{ timeConvert(movie.length) }</figcaption>
+      </figure>
+      <div class="conten mx-3">
+        <h3 class="title is-4">{movie.title}</h3>
+        <p>
+        Cast<br />
+        {#each movie.actors as actor} <a class="mr-2" href="">{actor.name}</a> {/each}
+
+        </p>
+      </div>
     </div>
+    {/each}
+  </div>
   {/if}
 </div>
+
+
