@@ -69,7 +69,7 @@
     {#each $actors.data.queryActor as actor}
     <div class="profile-card tile is-flex is-flex-direction-column mx-4">
       <figure class="image">
-        <img class="is-rounded" src="https://randomuser.me/api/portraits/men/{ Math.floor(Math.random() * 100) }.jpg" alt="Mugshot { actor.acts_in.title }" />
+        <img class="is-rounded" src="https://randomuser.me/api/portraits/men/{ Math.floor(Math.random() * 100) }.jpg" alt="Mugshot { actor.name }" />
       </figure>
       <div class="content has-text-centered p-4">
         <h3 class="title is-4">{actor.name}</h3>
