@@ -38,8 +38,8 @@
   $: movie = $getMovie.data?.getMovie
 </script>
 
-
-<div class="columns">
+<div class="container">
+  <div class="columns">
   {#if $getMovie.fetching}
     <Spinner class="column"/>
   {:else if $getMovie.error}
@@ -51,19 +51,23 @@
       No data
     </div> 
   {:else}
-  <div class="column notification is-full">
-    <div class="tile is-flex is-flex-direction-row mx-4">
-      <MovieThumbnail movie={movie} />
-      <div class="content mx-3">
-        <h2 class="title">{ movie.title }</h2>
-        <h3>Cast:</h3>
+    <div class="column is-full">
+      <div class="tile is-flex is-justify-content-center is-flex-direction-row mx-4">
+        <MovieThumbnail movie={movie} />
+        <div class="content mx-3">
+          <h2 class="title">{ movie.title }</h2>
+        </div>
+      </div>
+
+      <div class="is-flex is-flex-direction-column">
+        <h3 class="title">Cast</h3>
+        <p class="columns notification is-multiline">
+          {#each movie.actors as actor} 
+            <ProfileCard class="column" actor={actor} />
+          {/each}
+        </p>
       </div>
     </div>
-    <p class="columns is-multiline">
-      {#each movie.actors as actor} 
-        <ProfileCard class="column" actor={actor} />
-      {/each}
-    </p>
-  </div>
   {/if}
+  </div>
 </div>

@@ -45,6 +45,7 @@
 }
 </style>
 
+<div class="container">
   <div class="columns is-multiline">
      <div class="column is-full">
       <h2 class="title mx-4">
@@ -72,3 +73,4 @@
     </div>
   {/if}
   </div>
+</div>
