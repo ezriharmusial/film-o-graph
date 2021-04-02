@@ -50,8 +50,8 @@
   <div class="tile is-parent">
     {#each $movies.data.queryMovie as movie}
     <div class="tile notification is-flex is-flex-direction-row mx-4">
-      <MovieThumbnail title={ movie.title } length={ movie.length } />
-      <div class="content mx-3">
+      <MovieThumbnail movie={movie} } />
+      <div class="content mx-5">
         <h3 class="title is-4">{ movie.title }</h3>
         <p>
           Cast<br />

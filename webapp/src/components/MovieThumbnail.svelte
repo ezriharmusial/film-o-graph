@@ -1,9 +1,19 @@
 <script>
   import { timeConvert } from '../utils'
 
-  export let image = "/images/movies/small/mandelorian.jpg";
-  export let title = "Mandelorian";
-  export let length = "7600"
+  export let movie = {
+    id: "",
+    title : "Mandelorian",
+    image : "/images/movies/small/mandelorian.jpg",
+    length : "7600"
+  }
+
+  // Catch emtpy image in initial mutation data
+  $: if (movie.image == null) {
+    movie.image = "/images/movies/small/mandelorian.jpg"
+  }
+
+
 </script>
 
 <style lang="scss"> 
@@ -21,6 +31,6 @@
 </style>
 
 <figure class="image">
-  <img src="{ image }" alt="poster { title }" />
-  <figcaption class="tag">{ timeConvert( length ) }</figcaption>
+  <img src="{ movie.image }" alt="poster { movie.title }" />
+  <figcaption class="tag">{ timeConvert( movie.length ) }</figcaption>
 </figure>
