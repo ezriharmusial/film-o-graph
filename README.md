@@ -17,11 +17,11 @@ Om wat richting te geven over welke dingen we graag willen zien hebben we een li
 1. Als user kun je een film met titel en speeltijd toevoegen
 2. Als user kun je een acteur met naam en nationaliteit toevoegen
 3. Als user kun je bij het toevoegen van een film in 1 formulier bestaande acteurs koppelen of nieuwe acteurs aanmaken (de mutation voor het maken van een film kan dus genest acteurs aanmaken)
-4. Als user kun je een lijst van films raadplegen
-5. Als user wil ik dat de applicatie in een aantrekkelijke vormgeving getoond wordt (gebruik hiervoor bijv. een bestaande grote UI-library zoals vuetify of element-ui)
+4. :heavy_check_mark: Als user kun je een lijst van films raadplegen
+5. :heavy_check_mark: Als user wil ik dat de applicatie in een aantrekkelijke vormgeving getoond wordt (gebruik hiervoor bijv. een bestaande grote UI-library zoals vuetify of element-ui)
 6. Als user kun je een bestaande film updaten en verwijderen
-7. Als developer kan ik de applicatie makkelijk opstarten met bijv. Docker
-8. Als user kun je een lijst van acteurs raadplegen
+7. :heavy_check_mark: Als developer kan ik de applicatie makkelijk opstarten met bijv. Docker
+8. :heavy_check_mark: Als user kun je een lijst van acteurs raadplegen
 9. Als user kun je een bestaande acteurs updaten en verwijderen
 
 ## Overig
