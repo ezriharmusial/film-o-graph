@@ -2,8 +2,9 @@
   import { operationStore, query } from "@urql/svelte"
   import { link } from 'svelte-spa-router'
   import Spinner from '../components/Spinner.svelte'
+  import Fa from 'svelte-fa';
+  import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 
-  // Accept incoming Parameters
   export let params
 
   // graphQL query
@@ -12,10 +13,13 @@
       queryActor {
         id
         name
+        gender
+        image
         nationality
         acts_in {
           id
           title
+          image
           length
        }
       }
@@ -26,40 +30,56 @@
   query(actors)
 
   // DevLogs
-  $: console.log("Page Params:", params)
   $: console.log("Actors Data:", $actors.data?.queryActor)
 </script>
 
-<div class="container">
-  <h2 class="title mx-4">
-    Actors
-  </h2>
+<style lang="scss">
+.is-parent {
+  display: flex;
+
+  .tile {
+    flex: 0 0 auto;
+    width: 200px;
+    border-radius: 1rem;
+    color: grey;
+    align-items: center;
+    justify-content: center;  
+  } 
+}
+</style>
+
+  <div class="tile is-parent flex-direction-row">
+     <div class="tile">
+      <h2 class="title mx-4">
+        Actors
+      </h2>
+    </div>
 
   {#if $actors.fetching}
-    <Spinner /> 
+    <Spinner class="tile"/> 
   {:else if $actors.error}
-    Oh no! {$actors.error.message}
+    <div class="tile notification is-danger m-5">
+      Oh no! {$actors.error.message}
+    </div>
   {:else if !$actors.data}
-    No data
+    <div class="tile notification is-info m-5">
+      No data
+    </div>
   {:else}
-  <div class="tile is-parent">
     {#each $actors.data.queryActor as actor}
-    <div class="tile notification is-flex is-flex-direction-row mx-4">
-      <figure class="image is-128x128 is-rounded">
-        <img src="https://randomuser.me/api/portraits/men/{ Math.floor(Math.random() * 100) }.jpg" alt="Mugshot { actor.acts_in.title }" />
+    <div class="profile-card tile is-flex is-flex-direction-column mx-4">
+      <figure class="image">
+        <img class="is-rounded" src="https://randomuser.me/api/portraits/men/{ Math.floor(Math.random() * 100) }.jpg" alt="Mugshot { actor.acts_in.title }" />
       </figure>
-      <div class="conten mx-3">
+      <div class="content has-text-centered p-4">
         <h3 class="title is-4">{actor.name}</h3>
         <h4 class="subtitle is-5">{actor.nationality}</h4>
-        <p>
-          Filmography<br />
-          <a class="mr-2" href="/movies/{ actor.acts_in.id }" use:link>{ actor.acts_in.title }</a>
-        </p>
       </div>
     </div>
     {/each}
-  </div>
+    <div class="profile-card tile is-flex is-flex-direction-column mx-4">
+      <Fa class="m-4" icon={ faUserPlus } size="4x" />
+      <button class="button is-info">Add Actor</button>
+    </div>
   {/if}
-</div>
-
-
+  </div>

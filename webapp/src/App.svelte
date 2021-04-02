@@ -40,9 +40,10 @@
     <Navbar />
   </div>
 
-  <div class="hero-body">
+  <div class="hero-body p-0">
     <Router {routes}/>
   </div>
+
   <div class="hero-foot">
     <Footer />
   </div>
