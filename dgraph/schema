@@ -1,13 +1,16 @@
 type Actor {
   id: ID!
   name: String 
+  gender: Boolean
+  image: Int
   nationality: String
-  acts_in: Movie @hasInverse(field: actors) 
+  acts_in: [Movie] @hasInverse(field: actors) 
 }
 
 type Movie {
   id: ID!
   title: String 
+  image: String
   length: Int
   actors: [Actor]
 }
