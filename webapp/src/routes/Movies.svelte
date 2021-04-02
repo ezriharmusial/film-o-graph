@@ -2,6 +2,7 @@
   import MovieThumbnail from '../components/MovieThumbnail.svelte'
   import { operationStore, query } from "@urql/svelte"
   import { link } from 'svelte-spa-router'
+  import Spinner from '../components/Spinner.svelte'
 
   // Accept incoming Parameters
   export let params
@@ -37,7 +38,7 @@
   </h2>
 
   {#if $movies.fetching}
-    Loading...
+    <Spinner />
   {:else if $movies.error}
     Oh no! {$movies.error.message}
   {:else if !$movies.data}

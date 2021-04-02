@@ -1,6 +1,7 @@
 <script>
   import { operationStore, query } from "@urql/svelte"
   import { link } from 'svelte-spa-router'
+  import Spinner from '../components/Spinner.svelte'
 
   // Accept incoming Parameters
   export let params
@@ -35,7 +36,7 @@
   </h2>
 
   {#if $actors.fetching}
-    Loading...
+    <Spinner /> 
   {:else if $actors.error}
     Oh no! {$actors.error.message}
   {:else if !$actors.data}
