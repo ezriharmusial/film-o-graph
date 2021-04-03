@@ -2,15 +2,30 @@
   import {link} from 'svelte-spa-router'
   import Fa from 'svelte-fa';
   import { faPencilAlt, faPlus } from '@fortawesome/free-solid-svg-icons';
+  import { editMode } from '../stores.js'
+
+  function toggleEditMode(){ 
+   editMode.update(editMode => !editMode )
+  }
+
+  //devlog
+  $: console.log('editMode:', $editMode)
 </script>
 
-<nav class="tabs is-boxed is-fullwidth">
-  <div class="container">
-    <ul>
-      <li><a href="/movies" use:link>Movies</a></li>
-      <li><a href="/actors" use:link>Actors</a></li>
-      <li><Fa icon={faPencilAlt} /></li>
-      <li><Fa icon={faPlus} /></li>
-    </ul>
-  </div>
+<style lang="scss">
+.buttons {
+  margin: 1rem;
+
+  .button {
+    transition: background-color color;
+    transition-duration: 0.9s;
+  }
+} 
+</style>
+
+<nav class="tabs is-right is-toggle is-toggle-rounded is-medium is-fullwidth">
+  <ul class="buttons">
+    <li class="button is-rounded{ ($editMode) ? ' is-danger' : ' is-warning' }" on:click={toggleEditMode}><Fa icon={faPencilAlt} />{ ($editMode) ? ' Edit mode' : '' }</li>
+    <li class="button is-rounded is-success"><Fa icon={faPlus} /></li>
+  </ul>
 </nav>
