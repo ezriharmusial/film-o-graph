@@ -50,9 +50,9 @@
   <div class="tile is-parent">
     {#each $movies.data.queryMovie as movie}
     <div class="tile notification is-flex is-flex-direction-row mx-4">
-      <MovieThumbnail movie={movie} } />
+      <MovieThumbnail movie={movie} />
       <div class="content mx-5">
-        <h3 class="title is-4">{ movie.title }</h3>
+        <h3 class="title is-4"><a class="mr-2" href="/movies/{ movie.id }" use:link>{ movie.title }</a></h3>
         <p>
           Cast<br />
           {#each movie.actors as actor} <a class="mr-2" href="/actors/{ actor.id }" use:link>{ actor.name }</a> {/each}
