@@ -1,12 +1,9 @@
 <script>
   import ProfileCard from '../components/ProfileCard.svelte'
   import { operationStore, query } from "@urql/svelte"
-  import { link } from 'svelte-spa-router'
   import Spinner from '../components/Spinner.svelte'
   import Fa from 'svelte-fa';
   import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
-
-  export let params
 
   // graphQL query
   const actors = operationStore(`
@@ -65,9 +62,11 @@
     </div>
   {:else}
     {#each $actors.data.queryActor as actor}
-      <ProfileCard actor={actor} class="column"/>
+      <div class="column is-one-third-tablet">
+        <ProfileCard actor={actor} />
+      </div>
     {/each}
-    <div class="column profile-card is-flex is-flex-direction-column mx-4">
+    <div class="column profile-card is-one-third is-flex is-flex-direction-column mx-4">
       <Fa class="m-4" icon={ faUserPlus } size="4x" />
       <button class="button is-info">Add Actor</button>
     </div>

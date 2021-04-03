@@ -18,22 +18,28 @@
   $: console.log('Profilecard actor:', actor)
 </script>
 
-<style>
+<style lang="scss">
 .profile-card {
-  display:flex;
-  width: 200px;
-  border-radius: 1rem;
+  min-width: 30vw;
+  padding: 1rem;
+  border-radius: 0.5rem;
   color: grey;
   align-items: center;
-  justify-content: center;  
+  justify-content: center;
+  transition: background-color;
+  transition-duration: 0.5s;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
 } 
 </style>
-<a href="/actors/{actor.id}" alt="visit {actor.name}" class="profile-card column is-flex is-flex-direction-column mx-4" use:link>
+<a href="/actors/{actor.id}" alt="visit {actor.name}" class="profile-card is-flex is-flex-direction-column mx-4" use:link>
   <figure class="image">
     <img class="is-rounded" src="{actor.image}" alt="Mugshot { actor.name }" />
   </figure>
   <div class="content has-text-centered p-4">
-    <h3 class="title is-4">{actor.name}</h3>
-    <h4 class="subtitle is-5">{actor.nationality}</h4>
+    <h3 class="title is-5">{actor.name}</h3>
+    <h4 class="subtitle is-6">{actor.nationality}</h4>
   </div>
 </a>
