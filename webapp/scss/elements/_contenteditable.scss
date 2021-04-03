@@ -1,0 +1,40 @@
+[contenteditable] {
+  outline: 0px solid transparent;
+  border-bottom: 3px solid rgba(255,255,255,0.5); 
+  transition: border;
+  transition-duration: .5s; 
+
+  &[placeholder]:empty:before {
+    content: attr(placeholder);
+    color: rgba(255,255,255,0.9);
+  }
+
+  &:after {
+    border-bottom: 3px solid transparent;
+    margin-bottom:-3px;
+    z-index: 2;
+    width: 1%;
+    margin: 0 auto -3px auto;
+    transition: border width;
+    transition-duration: .5s; 
+  }
+
+  &:hover {
+    border-bottom-color: transparant;
+
+    &:after {
+      content: ""; 
+      display: block; 
+      width: 15%; 
+      border-bottom: 3px solid #0077be;
+    }
+  }
+
+  &:focus {
+    border-bottom-color: #0077be;
+    &:after {
+      width: 100%;
+    }
+  }
+}
+
