@@ -1,34 +1,25 @@
 <script>
   import ProfileCard from '../components/ProfileCard.svelte'
-  import { operationStore, query } from "@urql/svelte"
   import Spinner from '../components/Spinner.svelte'
   import Fa from 'svelte-fa';
   import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
+  import { operationStore, query, mutation } from "@urql/svelte";
+  import { ACTORS_QUERY, ADD_ACTORS } from "../graphql.js";
 
-  // graphQL query
-  const actors = operationStore(`
-    {
-      queryActor {
-        id
-        name
-        gender
-        image
-        nationality
-        acts_in {
-          id
-          title
-          image
-          length
-       }
-      }
-    }
-  `);
+  $: actors = query(
+    operationStore(  
+      ACTORS_QUERY,
+      {},
+      { requestPolicy: "cache-and-network" }
+    )
+  );
 
-  // Execute query
-  query(actors)
+  function addActors() {
+    mutation({ query: ADD_ACTORS });
+  }
 
   // DevLogs
-  $: console.log("Actors Data:", $actors.data?.queryActor)
+  $: console.log("Actorlist", $actors.data?.queryActor)
 </script>
 
 <style>
@@ -43,12 +34,10 @@
 </style>
 
 <div class="container">
+  <h2 class="title mx-4">
+    Actors
+  </h2>
   <div class="columns is-multiline">
-     <div class="column is-full">
-      <h2 class="title mx-4">
-        Actors
-      </h2>
-    </div>
 
   {#if $actors.fetching}
     <Spinner class="column is-full"/> 
@@ -61,14 +50,21 @@
       No data
     </div>
   {:else}
-    {#each $actors.data.queryActor as actor}
-      <div class="column is-one-third-tablet">
-        <ProfileCard actor={actor} />
+  {#each $actors.data.queryActor as actor}
+    <div class="column is-one-forth is-one-third-tablet">
+      <ProfileCard actor={actor} />
+    </div>
+  {/each}
+    <div class="column is-one-forth is-one-third-tablet"> 
+      <div class="profile-card is-one-third is-flex is-flex-direction-column mx-4">
+        <Fa class="m-4" icon={ faUserPlus } size="4x" />
+        <button class="button is-info">
+          <span class="icon">
+            <Fa class="m-4" icon={ faUserPlus }/>
+          </span>  
+          <span>Add Actor</span>
+        </button>
       </div>
-    {/each}
-    <div class="column profile-card is-one-third is-flex is-flex-direction-column mx-4">
-      <Fa class="m-4" icon={ faUserPlus } size="4x" />
-      <button class="button is-info">Add Actor</button>
     </div>
   {/if}
   </div>

@@ -1,9 +1,7 @@
-<div class="container">
-  <h2 class="title">
-    Movies
-  </h2>
+<script>
+ import Movies from './Movies.svelte'
+ import Actors from './Actors.svelte'
+</script>
 
-  <h2 class="title">
-    Actors
-  </h2>
-</div>
+<Movies />
+<Actors />

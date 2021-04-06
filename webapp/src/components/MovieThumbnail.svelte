@@ -4,13 +4,13 @@
   export let movie = {
     id: "",
     title : "Mandelorian",
-    image : "/images/movies/small/mandelorian.jpg",
+    image : "mandelorian.jpg",
     length : "7600"
   }
 
   // Catch emtpy image in initial mutation data
   $: if (movie.image == null) {
-    movie.image = "/images/movies/small/mandelorian.jpg"
+    movie.image = "mandelorian.jpg"
   }
 
 
@@ -31,6 +31,6 @@
 </style>
 
 <figure class="image">
-  <img src="{ movie.image }" alt="poster { movie.title }" />
+  <img src="/images/movies/small/{ movie.image }" alt="poster { movie.title }" />
   <figcaption class="tag">{ timeConvert( movie.length ) }</figcaption>
 </figure>

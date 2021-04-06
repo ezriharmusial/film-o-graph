@@ -1,73 +1,78 @@
 <script>
-  import MovieThumbnail from '../components/MovieThumbnail.svelte'
+  import { timeConvert } from '../utils'
   import ProfileCard from '../components/ProfileCard.svelte'
-  import { operationStore, query } from "@urql/svelte"
   import Spinner from '../components/Spinner.svelte'
+  import { operationStore, query,  } from "@urql/svelte";
+	import { fade } from 'svelte/transition';
+  import { MOVIE_QUERY } from "../graphql.js";
 
   // Accept incoming Parameters
   export let params
 
-  // Store id
-  const id = params.id;
+  $: id = params.id
+  $: movie = query(
+    operationStore(  
+      MOVIE_QUERY,
+      { id },
+      { requestPolicy: "cache-and-network" }
+    )
+  );
 
-  // graphQL query
-  const getMovie = operationStore(`
-    query{
-      getMovie(id: "${id}"){
-        id
-        title
-        length
-        image
-        actors {
-          id
-          name
-          gender
-          nationality
-          image
-        }
-      }
-    }
-  `);
+  // Catch emtpy image in initial mutation data
+  $: if ($movie.data.getMovie.image == null) {
+    $movie.data.getMovie.image = "mandelorian.jpg"
+  }
 
-  // Execute query
-  query(getMovie)
+  function updateMovie() {
+    console.log('Update Movie')
+    //mutation({ query: UPDATE_MOVIE});
+  }
+
+  function deleteMovie() {
+    console.log('Delete Movie')
+    //mutation({ query: DELETE_MOVIE, variables: { id } });
+  }
 
   // DevLogs
   $: console.log("Page Params:", params)
-  $: console.log("Movie Data:", $getMovie.data)
-  $: movie = $getMovie.data?.getMovie
+  $: console.log("Movie Data:", $movie.data)
 </script>
 
-<div class="container">
-  <div class="columns">
-  {#if $getMovie.fetching}
-    <Spinner class="column"/>
-  {:else if $getMovie.error}
-    <div class="column notification is-danger m-5">
-      Oh no! { $getMovie.error.message }
+<div class="container" transition:fade>
+  {#if $movie.fetching}
+    <Spinner class="tile"/>
+  {:else if $movie.error}
+    <div class="tile notification is-danger m-5">
+      Oh no! { $movie.error.message }
     </div> 
-  {:else if !$getMovie.data}
-    <div class="column notification is-info m-5">
+  {:else if !$movie.data}
+    <div class="tile notification is-info m-5">
       No data
     </div> 
   {:else}
-    <div class="column is-full">
-      <div class="tile is-flex is-justify-content-center is-flex-direction-row mx-4">
-        <MovieThumbnail movie={movie} />
-        <div class="content mx-3">
-          <h2 class="title">{ movie.title }</h2>
+    <figure class="image is-9by16" >
+       <img src="/images/movies/large/{ $movie.data.getMovie.image }" alt="poster { $movie.data.getMovie.title }" />
+    </figure>    
+
+    <div class="tile is-vertical is-parent">
+      <div class="tile is-horizontal mx-4">
+
+        <div class="tile content mx-3">
+          <h2 class="title">{ $movie.data.getMovie.title }</h2>
+          <h3 class="subtitle">
+            { timeConvert( $movie.data.getMovie.length ) }
+          </h3>
         </div>
       </div>
 
-      <div class="is-flex is-flex-direction-column">
+      <div class="tile">
         <h3 class="title">Cast</h3>
-        <p class="columns notification is-multiline">
-          {#each movie.actors as actor} 
-            <ProfileCard class="column" actor={actor} />
+        <p class="columns is-multiline">
+          {#each $movie.data.getMovie.actors as actor} 
+            <ProfileCard class="column notification" actor={actor} />
           {/each}
         </p>
       </div>
     </div>
   {/if}
   </div>
-</div>

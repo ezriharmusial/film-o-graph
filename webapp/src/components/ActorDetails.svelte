@@ -9,13 +9,13 @@
     return Math.floor(Math.random() * 99)
   } 
 
-  if ( $actor.data.getActor.image == null ) {
+  $: if ( $actor.data.getActor.image == null ) {
     getActorImage();
   }
 
   function getActorImage() {
     console.log('get ACtor IMage')
-    $actor.data.getActor.image = 'https://randomuser.me/api/portraits/' + (( $actor.data.getActor.gender !== "1") ? 'women' : 'men') + '/' + getRandomInt()  + '.jpg'
+    $actor.data.getActor.image = (( $actor.data.getActor.gender !== "1") ? 'women' : 'men') + '/' + getRandomInt()  + '.jpg'
   } 
 </script>
 
@@ -42,7 +42,7 @@
 
   <div class="is-flex is-justify-content-center is-flex-direction-row m-4">
     <figure class="image is-128x128 ">
-      <img class="is-rounded" src="{ $actor.data.getActor.image }" alt="Mugshot { $actor.data.getActor.name }" />
+      <img class="is-rounded" src="https://randomuser.me/api/portraits/{ $actor.data.getActor.image }" alt="Mugshot { $actor.data.getActor.name }" />
       {#if $editMode}
         <div class="is-random" on:click={getActorImage}>
           <Fa icon={ faDice } />

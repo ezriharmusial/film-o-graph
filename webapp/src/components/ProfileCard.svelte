@@ -6,12 +6,12 @@
     name: "John Doe",
     nationality: "Eartlian",
     gender: false,
-    image: `https://randomuser.me/api/portraits/${( typeof actor.gender == 'undefined' || actor.gender == false)?'wo':''}men/${ Math.floor(Math.random() * 100) }.jpg`
+    image: `${( typeof actor.gender == 'undefined' || actor.gender == false)?'wo':''}men/${ Math.floor(Math.random() * 100) }.jpg`
   }
 
   // Catch emtpy image in initial mutation data
   $: if (actor.image == null) {
-    actor.image = `https://randomuser.me/api/portraits/${( typeof actor.gender == 'undefined' || actor.gender == false)?'wo':''}men/${ Math.floor(Math.random() * 100) }.jpg`
+    actor.image = `${( typeof actor.gender == 'undefined' || actor.gender == false)?'wo':''}men/${ Math.floor(Math.random() * 100) }.jpg`
   }
 
   // DevLogs
@@ -36,7 +36,7 @@
 </style>
 <a href="/actors/{actor.id}" alt="visit {actor.name}" class="profile-card is-flex is-flex-direction-column mx-4" use:link>
   <figure class="image">
-    <img class="is-rounded" src="{actor.image}" alt="Mugshot { actor.name }" />
+    <img class="is-rounded" src="https://randomuser.me/api/portraits/{ actor.image }" alt="Mugshot { actor.name }" />
   </figure>
   <div class="content has-text-centered p-4">
     <h3 class="title is-5">{actor.name}</h3>
