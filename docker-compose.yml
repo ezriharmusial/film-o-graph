@@ -24,9 +24,21 @@ services:
       - 8080:8080
       - 9080:9080
     restart: on-failure
-    command: dgraph alpha --whitelist=172.18.0.1 --my=alpha:7080 --zero=zero:5080 
+    command: dgraph alpha --whitelist=172.18.0.5 --my=alpha:7080 --zero=zero:5080 
   ratel:
     image: dgraph/dgraph:latest
     ports:
       - 8000:8000
     command: dgraph-ratel
+
+  # curl client to add Schema & Mutations to development env
+  curl-client:
+    image: curlimages/curl
+    deploy:
+      restart_policy:
+        condition: on-failure
+    volumes:
+      - ./dgraph:/tmp/dgraph
+    depends_on: 
+      - alpha
+    command: ["sh", "-c", "sleep 10 && curl -X POST alpha:8080/admin/schema --data-binary '@/tmp/dgraph/schema' && curl alpha:8080/graphql -H 'Content-Type:application/json' -H 'Accept:application/json' -H 'Connection:keep-alive' -H 'Origin:altair://-' --data-binary '@/tmp/dgraph/mutations'" ]

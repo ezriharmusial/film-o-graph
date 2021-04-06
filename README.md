@@ -45,8 +45,6 @@ Bring up the Dgraph Backend with Docker-compose, add the graphQl schema and fill
 
     ```
     sudo docker-compose up -d
-    curl -X POST localhost:8080/admin/schema --data-binary '@./dgraph/schema'
-    curl 'http://localhost:8080/graphql' -H 'Accept-Encoding: gzip, deflate, br' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Connection: keep-alive' -H 'Origin: altair://-' --data-binary '{"query":"mutation addMovies($data:[AddMovieInput!]!){addMovie(input:$data){numUids movie{id title length actors{name nationality}}}}","variables":{"data":[{"title":"Lord of the Grins","length":"7320","actors":[{"name":"Elinoh Steel","nationality":"Irish"},{"name":"Borlando Gloom","nationality":"American"},{"name":"Tiv Wyler","nationality":"French"}]},{"title":"The Fandelorian","length":"5580","actors":[{"name":"Jancarlo Despasito","nationality":"Mexican"},{"name":"Jan Knoll","nationality":"Nederlands"}]}]}}' --compressed
     ```
 
 Enter the webapp directory, install dependencies with yarn or npm and start the webapp

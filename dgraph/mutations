@@ -1,1 +1,101 @@
-{"query":"mutation addMovies($data: [AddMovieInput!]!) {\n  addMovie(input: $data) {\n    numUids\n    movie {\n      id\n      title\n      length\n      actors {\n        name\n        nationality\n      }\n    }\n  }\n}","variables":{"data":[{"title":"Lord of the Grins","length":"7320","actors":[{"name":"Elinoh Steel","nationality":"Irish"},{"name":"Borlando Gloom","nationality":"American"},{"name":"Tiv Wyler","nationality":"French"}]},{"title":"The Fandelorian","length":"5580","actors":[{"name":"Jancarlo Despasito","nationality":"Mexican"},{"name":"Jan Knoll","nationality":"Nederlands"}]}]}}
+{
+   "query":"mutation addMovies($data:[AddMovieInput!]!){addMovie(input:$data){numUids movie{id title length actors{name nationality}}}}",
+   "variables":{
+      "data":[
+         {
+            "title":"Lord of the Grins",
+            "length":"7320",
+            "image":"lord_of_the_rings.jpg",
+            "actors":[
+               {
+                  "name":"Kris Pinas",
+                  "nationality":"German",
+                  "gender":true,
+                  "image":"men/11.jpg"
+               },
+               {
+                  "name":"Borlando Gloom",
+                  "nationality":"American",
+                  "gender":true,
+                  "image":"men/22.jpg"
+               },
+               {
+                  "name":"Tiv Wyler",
+                  "nationality":"French",
+                  "gender":false,
+                  "image":"women/33.jpg"
+               }
+            ]
+         },
+         {
+            "title":"Busters League",
+            "length":"7320",
+            "image":"justice_league.jpg",
+            "actors":[
+               {
+                  "name":"Elinoh Steel",
+                  "nationality":"Irish",
+                  "gender":true,
+                  "image":"men/32.jpg"
+               },
+               {
+                  "name":"Kris Pinas",
+                  "nationality":"German",
+                  "gender":true,
+                  "image":"men/11.jpg"
+               },
+               {
+                  "name":"Tiv Wyler",
+                  "nationality":"French",
+                  "gender":false,
+                  "image":"women/33.jpg"
+               }
+            ]
+         },
+         {
+            "title":"Zonder Woman",
+            "length":"7320",
+            "image":"wonder_woman.jpg",
+            "actors":[
+               {
+                  "name":"Rud Sjakot",
+                  "nationality":"Israeli",
+                  "gender":false,
+                  "image":"women/27.jpg"
+               },
+               {
+                  "name":"Kris Pinas",
+                  "nationality":"German",
+                  "gender":true,
+                  "image":"men/11.jpg"
+               },
+               {
+                  "name":"Krissy Pruik",
+                  "nationality":"Belgisch",
+                  "gender":false,
+                  "image":"women/87.jpg"
+               }
+            ]
+         },
+         {
+            "title":"The Fandelorian",
+            "length":"5580",
+            "image":"mandelorian.jpg",
+            "actors":[
+               {
+                  "name":"Jancarlo Despasito",
+                  "nationality":"Mexican",
+                  "gender":true,
+                  "image":"men/33.jpg"
+               },
+               {
+                  "name":"Jan Knoll",
+                  "nationality":"Nederlands",
+                  "gender":true,
+                  "image":"men/24.jpg"
+               }
+            ]
+         }
+      ]
+   }
+}
