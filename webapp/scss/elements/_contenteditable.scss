@@ -1,4 +1,4 @@
-[contenteditable] {
+*[contenteditable]{
   outline: 0px solid transparent;
   border-bottom: 3px solid rgba(255,255,255,0.5); 
   transition: border;
@@ -16,7 +16,7 @@
     width: 1%;
     margin: 0 auto -3px auto;
     transition: border width;
-    transition-duration: .5s; 
+    transition-duration: .5s;
   }
 
   &:hover {
@@ -24,7 +24,6 @@
 
     &:after {
       content: ""; 
-      display: block; 
       width: 15%; 
       border-bottom: 3px solid #0077be;
     }
