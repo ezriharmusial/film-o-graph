@@ -3,12 +3,14 @@
   import Navbar from './components/Navbar.svelte'
   import Router from 'svelte-spa-router'
   import { routes } from './routes.js'
+//  import { initClient } from "@urql/svelte";
+  import urql from './urql.js'
 
-  import { initClient } from "@urql/svelte";
+  urql.OnInit();
 
-  initClient({
-    url: "http://localhost:8080/graphql"
-  });
+//  initClient({
+//    url: "http://localhost:8080/graphql"
+//  });
 </script>
 
 <style lang="scss">
@@ -37,7 +39,7 @@
     <Navbar />
   </div>
 
-  <div class="hero-body p-0">
+  <div class="hero-body p-0 is-flex-direction-column">
     <Router {routes}/>
   </div>
 
